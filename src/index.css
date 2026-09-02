@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f7f4ef;
+  --surface: #ffffff;
+  --raised: #f0ebe2;
+  --ink: #221d17;
+  --ink-soft: #5b5347;
+  --ink-faint: #6f675a;
+  --line: #e0d9cc;
+  --line-soft: #ebe5d9;
+  --accent: #c2410c;
+  --accent-strong: #9a3412;
+  --accent-soft: #f6e3d7;
+  --accent-ink: #ffffff;
+  --ok: #166534;
+  --danger: #b91c1c;
+  --warn: #92610a;
+  --shadow-card: 0 1px 2px rgb(34 29 23 / 0.05), 0 6px 20px rgb(34 29 23 / 0.06);
+  --shadow-pop: 0 6px 16px rgb(34 29 23 / 0.12), 0 20px 48px rgb(34 29 23 / 0.18);
+}
+
+.dark {
+  --paper: #161310;
+  --surface: #201c17;
+  --raised: #29241d;
+  --ink: #f2eee8;
+  --ink-soft: #b5aca0;
+  --ink-faint: #8b8172;
+  --line: #37312a;
+  --line-soft: #2a251f;
+  --accent: #f97316;
+  --accent-strong: #fb8b3c;
+  --accent-soft: #39230f;
+  --accent-ink: #1c1208;
+  --ok: #4ade80;
+  --danger: #f87171;
+  --warn: #fbbf24;
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.35);
+  --shadow-pop: 0 8px 20px rgb(0 0 0 / 0.45), 0 24px 56px rgb(0 0 0 / 0.5);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  input[type='range'] {
+    accent-color: var(--accent);
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    accent-color: var(--accent);
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .card {
+    @apply rounded-xl border border-line bg-surface shadow-card;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-ink-soft;
+  }
+  .field-input {
+    @apply h-10 w-full rounded-lg border border-line bg-surface px-3 text-sm text-ink transition-colors placeholder:text-ink-faint hover:border-ink-faint focus:border-accent disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .checkerboard {
+    background-image: conic-gradient(var(--line-soft) 25%, var(--surface) 0 50%, var(--line-soft) 0 75%, var(--surface) 0);
+    background-size: 16px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
